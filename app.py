@@ -8,7 +8,7 @@ import logging
 from logging import Formatter, FileHandler
 from forms import *
 import os
-os.system('pip install gdown')
+os.system('!pip install gdown')
 import gdown
 import os.path   
 import pandas as pd
