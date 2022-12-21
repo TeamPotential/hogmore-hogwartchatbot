@@ -8,7 +8,10 @@ import logging
 from logging import Formatter, FileHandler
 from forms import *
 import os
-os.system('!pip install gdown')
+os.system('pip install gdown')
+os.system('pip install pandas')
+os.system('pip install torch')
+os.system('pip install -q transformers datasets folium==0.2.1')
 #import gdown
 import os.path   
 import pandas as pd
