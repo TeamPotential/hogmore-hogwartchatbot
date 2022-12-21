@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        draw star by number
+    </title>
+    
+    <style>
+      .yangpege {
+        background-image: url('static/img/도움말액자.png'); 
+        background-size: cover;
+        height: 500px; 
+        width: 1200px; 
+        position: absolute; 
+        top: 50%; 
+        left: 50%; 
+        margin: -12% 0 0 -600px;
+      }
+      .yangpege h2{
+        margin-left: 15%;
+        margin-top: 15%;
+      }
+      .yangpege button{
+        margin-left: 47.5%;
+        margin-top: 18%;
+      }
+      @font-face {
+        font-family: fontest;
+        src: url("static/font/GabiaCheongyeon.ttf");
+      }
+      h2, p{font-family: "fontest";}
+      #bgs {
+          position: fixed; 
+          top: -50%; 
+          left: -50%; 
+          width: 200%; 
+          height: 200%;
+          z-index: -2;
+      }
+      #bgs img {
+          position: absolute; 
+          top: 0; 
+          left: 0; 
+          right: 0; 
+          bottom: 0; 
+          margin: auto; 
+          min-width: 50%;
+          min-height: 50%;
+          z-index: -3;
+      }
+      
+      .log {
+        height: 150px; width: 150px; margin: 5px 0 0 42.5%;
+      }
+    </style>
+</head>
+<body>
+  <div id="bgs">
+    <img  src="static/img/호그와트연회장.png">
+  </div>
+
+  <div>    <!-- 오디오는 나중에 다시 시작 -->
+  <audio autoplay loop>
+    <source src="static/audio/hogbgm.mp3" type="audio/mpeg">
+  </audio>
+  </div>
+
+  <div>
+    <a href="/thort">
+      <img class="log" src="static/img/로고.png">
+    </a>
+  </div>
+
+  <div class='yangpege' >
+    <h2>
+      hello. This is the hogmore user manual. </br>
+      That's right.
+    </h2>
+    <form action="/calculate" method="GET">
+        <button type="submit">Back</button>
+    </form>
+  </div>
+</body>
+</html>
