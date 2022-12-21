@@ -43,8 +43,11 @@ def login_required(test):
 
 @app.route('/')
 def home():
-    return render_template('pages/placeholder.home.html')
+    return render_template('forms/main.html')
 
+@app.route('/calculate')
+def calculate(num=None):
+    return render_template('forms/index.html', num=num)
 
 @app.route('/about')
 def about():
