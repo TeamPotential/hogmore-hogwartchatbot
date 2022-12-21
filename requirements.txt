@@ -1,0 +1,9 @@
+gunicorn
+Fabric
+Flask-SQLAlchemy
+Flask-WTF
+WTForms==2.3.3
+coverage
+# ecdsa
+# paramiko
+# pycrypto
