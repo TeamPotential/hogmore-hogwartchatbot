@@ -9,7 +9,7 @@ from logging import Formatter, FileHandler
 from forms import *
 import os
 os.system('!pip install gdown')
-import gdown
+#import gdown
 import os.path   
 import pandas as pd
 import numpy as np
