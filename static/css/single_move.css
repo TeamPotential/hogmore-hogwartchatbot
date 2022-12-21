@@ -1,0 +1,80 @@
+#div1 {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    -webkit-transform: scale(1);
+}
+
+.move_scale {
+    -webkit-animation-name: animation_scale;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-delay: 0.5s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: both;
+}
+
+.move_scales {
+    -webkit-animation-name: animation_scales;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-delay: 0.5s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: both;
+}
+
+.yangpege {
+    -webkit-animation-name: animation_move;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-delay: 0.5s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes animation_scale {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% { 
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes animation_scales {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% { 
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes animation_move {
+    0% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 0;
+    }
+    100% { 
+        opacity: 1;
+    }
+}
