@@ -1,7 +1,7 @@
 # Hogmore : Hogwart chatbot based on Poly-Encoder
  
 ## 진행기간 
-- 2022.11.14 ~ 2022.12.21
+- 2022.11.14 ~ 2022.12.21 
 
 ## 개요
 
@@ -134,7 +134,7 @@ Cross-encoder는 유사도 점수를 구할 때 Candidate Embedding을 매번 �
 - 더욱 정교한 대화가 가능한 장기기억 챗봇으로 개발  
 
 ## 참조
--Humeau, S., Shuster, K., Lachaux, M. A., & Weston, J. (2019). Poly-encoders: Transformer architectures and pre-training strategies for fast and accurate multi-sentence scoring. arXiv preprint arXiv:1905.01969.
+-Humeau, S., Shuster, K., Lachaux, M. A., & Weston, J. (2019). Poly-encoders: Transformer architectures and pre-training strategies for fast and accurate multi-sentence scoring. arXiv preprint arXiv:1905.01969..
 https://doi.org/10.48550/arXiv.1905.01969
 
 https://github.com/chijames/Poly-Encoder
