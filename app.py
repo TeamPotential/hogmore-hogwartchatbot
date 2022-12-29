@@ -52,10 +52,6 @@ app = Flask(__name__)
 def home():
     return render_template('forms/main.html')
 
-@app.route('/calculate')
-def calculate(num=None):
-    return render_template('forms/index.html', num=num)
-
 @app.route("/helps")
 def helps():
     return render_template('forms/help.html')
@@ -67,7 +63,7 @@ def enhelps():
 @app.route("/anitest")
 def anitest(num=None):
     
-    return render_template('ani.html')
+    return render_template('forms/ani.html')
 
 @app.route('/calculate', methods=['POST', 'GET'])
 def calculate(num=None):
