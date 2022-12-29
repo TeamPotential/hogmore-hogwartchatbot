@@ -9,7 +9,7 @@ transformers
 datasets
 pandas
 torch
-gdown
+# gdown
 # ecdsa
 # paramiko
 # pycrypto
