@@ -1,283 +1,175 @@
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
-## Welcome
-
-Hello. Want to get started with Flask quickly? Good. You came to the right place. This Flask application framework is pre-configured with **Flask-SQLAlchemy**, **Flask-WTF**, **Fabric**, **Coverage**, and the **Bootstrap** frontend (among others). This will get your Flask app up and running on Heroku or PythonAnywhere quickly. Use this starter, boilerplate for all you new Flask projects. Cheers!
-
-<hr>
-
-![real-python-logo](https://raw.githubusercontent.com/realpython/about/master/rp_small.png)
-
-**Designed for the [Real Python](http://www.realpython.com) course.**
-
-<hr>
-
-Preview the skeleton app here - [http://www.flaskboilerplate.com/](http://www.flaskboilerplate.com/)
-
-**EXAMPLE APP: [http://flasktaskr.herokuapp.com/](http://flasktaskr.herokuapp.com/)**
-
-**What is Flask?** Flask is a microframework for Python based on Werkzeug and Jinja2.
-
-Project Structure
---------
-
-  ```sh
-  ├── Procfile
-  ├── Procfile.dev
-  ├── README.md
-  ├── app.py
-  ├── config.py
-  ├── error.log
-  ├── forms.py
-  ├── models.py
-  ├── requirements.txt
-  ├── static
-  │   ├── css
-  │   │   ├── bootstrap-3.0.0.min.css
-  │   │   ├── bootstrap-theme-3.0.0.css
-  │   │   ├── bootstrap-theme-3.0.0.min.css
-  │   │   ├── font-awesome-3.2.1.min.css
-  │   │   ├── layout.forms.css
-  │   │   ├── layout.main.css
-  │   │   ├── main.css
-  │   │   ├── main.quickfix.css
-  │   │   └── main.responsive.css
-  │   ├── font
-  │   │   ├── FontAwesome.otf
-  │   │   ├── fontawesome-webfont.eot
-  │   │   ├── fontawesome-webfont.svg
-  │   │   ├── fontawesome-webfont.ttf
-  │   │   └── fontawesome-webfont.woff
-  │   ├── ico
-  │   │   ├── apple-touch-icon-114-precomposed.png
-  │   │   ├── apple-touch-icon-144-precomposed.png
-  │   │   ├── apple-touch-icon-57-precomposed.png
-  │   │   ├── apple-touch-icon-72-precomposed.png
-  │   │   └── favicon.png
-  │   ├── img
-  │   └── js
-  │       ├── libs
-  │       │   ├── bootstrap-3.0.0.min.js
-  │       │   ├── jquery-1.10.2.min.js
-  │       │   ├── modernizr-2.6.2.min.js
-  │       │   └── respond-1.3.0.min.js
-  │       ├── plugins.js
-  │       └── script.js
-  └── templates
-      ├── errors
-      │   ├── 404.html
-      │   └── 500.html
-      ├── forms
-      │   ├── forgot.html
-      │   ├── login.html
-      │   └── register.html
-      ├── layouts
-      │   ├── form.html
-      │   └── main.html
-      └── pages
-          ├── placeholder.about.html
-          └── placeholder.home.html
-  ```
-
-### Screenshots
-
-![Pages](https://github.com/realpython/flask-boilerplate/blob/master/screenshots/pages.png)
-
-![Forms](https://github.com/realpython/flask-boilerplate/blob/master/screenshots/forms.png)
-
-
-### Quick Start
-
-1. Clone the repo
-  ```
-  $ git clone https://github.com/realpython/flask-boilerplate.git
-  $ cd flask-boilerplate
-  ```
-
-2. Initialize and activate a virtualenv:
-  ```
-  $ virtualenv --no-site-packages env
-  $ source env/bin/activate
-  ```
-
-3. Install the dependencies:
-  ```
-  $ pip install -r requirements.txt
-  ```
-
-5. Run the development server:
-  ```
-  $ python app.py
-  ```
-
-6. Navigate to [http://localhost:5000](http://localhost:5000)
-
-
-Deploying to Heroku
-------
-
-1. Signup for [Heroku](https://api.heroku.com/signup)
-2. Login to Heroku and download the [Heroku Toolbelt](https://toolbelt.heroku.com/)
-3. Once installed, open your command-line and run the following command - `heroku login`. Then follow the prompts:
-
-  ```
-  Enter your Heroku credentials.
-  Email: michael@mherman.org
-  Password (typing will be hidden):
-  Could not find an existing public key.
-  Would you like to generate one? [Yn]
-  Generating new SSH public key.
-  Uploading ssh public key /Users/michaelherman/.ssh/id_rsa.pub
-  ```
-
-4. Activate your virtualenv
-5. Heroku recognizes the dependencies needed through a *requirements.txt* file. Create one using the following command: `pip freeze > requirements.txt`. Now, this will only create the dependencies from the libraries you installed using pip. If you used easy_install, you will need to add them directly to the file.
-6. Create a Procfile. Open up a text editor and save the following text in it:
-
-  ```
-  web: gunicorn app:app --log-file=-
-  ```
-
-   Then save the file in your applications root or main directory as *Procfile* (no extension). The word "web" indicates to Heroku that the application will be attached to the HTTP routing stack once deployed.
-
-7. Create a local Git repository (if necessary):
-
-  ```
-  $ git init
-  $ git add .
-  $ git commit -m "initial files"
-  ```
-
-8. Create your app on Heroku:
-
-  ```
-  $ heroku create <name_it_if_you_want>
-  ```
-
-9. Deploy your code to Heroku:
-
-  ```
-  $ git push heroku master
-  ```
-
-10. View the app in your browser:
-
-  ```
-  $ heroku open
-  ```
-
-11. You app should look similar to this - [http://www.flaskboilerplate.com/](http://www.flaskboilerplate.com/)
-
-12. Having problems? Look at the Heroku error log:
-
-  ```
-  $ heroku logs
-  ```
-
-### Deploying to PythonAnywhere
-
-1. Install [Git](http://git-scm.com/downloads) and [Python](http://install.python-guide.org/) - if you don't already have them, of course.
-
-  > If you plan on working exclusively within PythonAnywhere, which you can, because it provides a cloud solution for hosting and developing your application, you can skip step one entirely. :)
-
-2. Sign up for [PythonAnywhere](https://www.pythonanywhere.com/pricing/), if you haven't already
-3. Once logged in, you should be on the Consoles tab.
-4. Clone this repo:
-  ```
-  $ git clone git://github.com/realpython/flask-boilerplate.git
-  $ cd flask-boilerplate
-  ```
-
-5. Create and activate a virtualenv:
-  ```
-  $ virtualenv venv --no-site-packages
-  $ source venv/bin/activate
-  ```
-
-6. Install requirements:
-  ```
-  $ pip install -r requirements.txt
-  ```
-
-7. Next, back on PythonAnywhere, click Web tab.
-8. Click the "Add a new web app" link on the left; by default this will create an app at your-username.pythonanywhere.com, though if you've signed up for a paid "Web Developer" account you can also specify your own domain name here. Once you've decided on the location of the app, click the "Next" button.
-9. On the next page, click the "Flask" option, and on the next page just keep the default settings and click "Next" again.
-Once the web app has been created (it'll take 20 seconds or so), you'll see a link near the top of the page, under the "Reload web app" button, saying "It is configured via a WSGI file stored at..." and a filename.  Click this, and you get to a page with a text editor.
-10. Put the following lines of code at the start of the WSGI file (changing "your-username" appropriately)
-
-  ```
-  activate_this = '/home/your-username/flask-boilerplate/venv/bin/activate_this.py'
-  execfile(activate_this, dict(__file__=activate_this))
-  ```
-
-11. Then update the following lines of code:
-
-  from
-
-  ```
-  project_home = u'/home/your-username/mysite'
-  ```
-
-  to
-
-  ```
-  project_home = u'/home/your-username/flask-boilerplate'
-  ```
-
-  from
-
-  ```
-  from flask_app import app as application
-  ```
-
-  to
-
-  ```
-  from app import app as application
-  ```
-
-12. Save the file.
-13. Go to the website http://your-username.pythonanywhere.com/ (or your own domain if you specified a different one earlier), and you should see something like this - [http://www.flaskboilerplate.com/](http://www.flaskboilerplate.com/).
-
-*Now you're ready to start developing!*
-
-***Need to PUSH your PythonAnywhere repo to Github?***
-
-1. Start a bash console
-2. Run:
-
-  ```
-  $ ssh-keygen -t rsa
-  ```
-
-3. Just accept the defaults, then show the public key:
-
-  ```
-  $ cat ~/.ssh/id_rsa.pub
-  ```
-
-4. Log in to GitHub.
-5. Go to the "Account settings" option at the top right (currently a wrench and a screwdriver crossed)
-6. Select "SSH Keys" from the list at the left.
-7. Click the "Add SSH key" button at top right.
-8. Enter a title (I suggest something like "From PythonAnywhere" and then paste the output of the previous "cat" command into the Key box.
-9. Click the green "Add key" button.  You'll be prompted to enter your password.
-
-PUSH and PULL away!
-
-### What's next?
-
-1. Using Heroku? Make sure you deactivate your virtualenv once you're done deploying: `deactivate`
-2. Need to reactivate? (1) Unix - `source venv/bin/activate` (2) Windows - `venv\scripts\activate`
-4. Add your Google Analytics ID to the *main.html* file
-5. Add a domain name to [Heroku](https://devcenter.heroku.com/articles/custom-domains) or PythonAnywhere via a [CNAME](http://en.wikipedia.org/wiki/CNAME_record) record
-5. DEVELOP YOUR APP - need [help](http://realpython.com)?
-
-### Learn More
-
-1. [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/python)
-2. [PythonAnywhere - Help](https://www.pythonanywhere.com/help/)
-1. [Flask Documentation](http://flask.pocoo.org/docs/)
-2. [Flask Extensions](http://flask.pocoo.org/extensions/)
-1. [Real Python](http://www.realpythonfortheweb.com) :)
-
+# Hogmore : Hogwart chatbot based on Poly-Encoder
+ 
+## 진행기간 
+- 2022.11.14 ~ 2022.12.21
+
+## 개요
+
+- 해리포터 세계관에 몰입하고싶은 사람들을 위한 챗봇을 만들기 위해서 Poly-Encoder 기반 해리포터의 세계관을 담은 Closed Domain Chatbot 제작하여 Flask를 사용해 Web 페이지오 Kakao API에 적용
+  
+    
+    
+    구분 | 항목|
+    :-----:|:----:|
+    개체 | 제품 전체, 본품, 패키지/구성품, 브랜드|
+    속성 | 일반, 가격, 디자인, 품질, 편의성, 다양성, 인지도|
+
+     ex) 제품 전체#인지도
+  
+  - 속성 감성 분류(Aspect Sentiment Classification, ASC)  
+    - 속성 범주 탐지에서 추론한 '개체#속성' 범주에 대한 화자의 감성을 긍정, 부정, 중립 으로 분류한다.  
+    - 예를들어 "아이폰은 이쁜데 비싸요"와 같은 문장의 경우, “제품 전체#디자인”은 긍정으로 분류할 수 있으나,  
+    “제품 전체#가격”은 부정으로 분류할 수 있다.      
+       
+   
+## 위치eㅔ너지 팀   
+
+- 한민재 : 모델 구축, 핸들링
+- 정가영 : 데이터 관리 및 기획
+- 이성연 : 모델 핸들링, 데이터 정리
+- 양병진 : 소프트보팅, 데이터 크롤링
+- 김규인 : 데이터 증강, 하드보팅
+___
+## 폴더 설명
+
+- data
+  - 모델 학습에 사용된 데이터셋
+  
+
+- data_analysis
+  - 데이터 전처리에 사용된 코드
+
+- predict_voting
+  - 모델 예측, 오토라벨링, 하드보팅, 소프트보팅에 사용된 코드
+
+- prove
+  - 최종 제출파일 검증 코드
+  
+- train_model
+  - 모델 학습에 사용된 코드    
+
+># 모델 검증시 *prove  폴더 사용 설명서*
+>>1. 모델 다운로드
+>>>- url : http://github.com/hanmoonje/Korean_ABSA_potential
+>>>내의 prove 폴더에 'predict_final_potential.ipynb' 활용
+>>>모델 돌릴 시 jupyter 파일 위치에 'tmp'라는 이름의 폴더가 없는 환경에서 구동
+
+>>2. 필요한 설치 ( colab 환경에서는 필수 설치 )
+>>>- !pip install transformers==4.24.0 (colab환경 시 필수 설치, 가상환경의 경우 터미널에 설치)
+>>>- !pip install datasets==2.6.1 (colab환경 시 필수 설치, 가상환경의 경우 터미널에 설치)
+>>>- !pip install gdown (colab환경 시 필수 설치, 가상환경의 경우 터미널에 설치)
+
+>>3. 위 과정이 완료 시 모듈 import 항목부터 모두 실행
+>>>- ! 실행 중간에 !gdown 환경에 의해 중단 시 중단된 위치에서 다시 작동해 끝까지 실행
+>>>- ./tmp 위치에 완성된 'final_potential.jsonl'파일 생성
+>>>- 해당 파일 제출 시 리더보드 성적과 일치
+
+
+## 사용된 데이터  
+
+- 국립국어원 제공 ['속성 기반 감성분석 말뭉치'](https://corpus.korean.go.kr/)
+- 모두의 말뭉치 ['속성 기반 감성분석 말뭉치 2021'](https://corpus.korean.go.kr/)
+- [네이버 쇼핑 크롤링 데이터](https://shopping.naver.com/home)
+
+## 과정  
+
+ 1. 개발환경 : Python, PyTorch, Colab, AWS(Amazon Web Servise)
+ 
+ 2. 데이터 전처리
+   - 전처리
+     - 데이터프레임 변환  
+       JSON 형식으로 구성되있는 데이터들을 데이터프레임으로 변환하는 과정을 거쳤다.  
+       해당 과정에서 학습에 용이하기위해 여러 속성을 갖는 문장의 경우, 하나의 문장에 하나의 속성을 갖도록   
+       전처리 과정을 거쳤다.  
+       
+     - 오토라벨링  
+       네이버 쇼핑에서 크롤링한 14만개의 데이터의 속성분류를 수작업으로 할 수 없었기에 오토라벨링 모델을 만들었다.  
+       1. 여러 버전의 오토라벨링 모델을 만들어 여러 예측값을 찾아낸다.  
+       2. ms Excel의 필터 기능을 이용하여 하드 보팅을 진행하였다.  
+       3. 마지막으로 직접 검수하는 과정을 거쳤다.
+      
+      
+   - 증강  
+     최대 1:300 의 데이터 불균형을 해소하기위해 적은 범주에 대해 증강과정을 수행하였다.  
+     증강과정을 수행한 속성은 아래와 같으며, 최종적으로 최대 1:43 으로 데이터 불균형을 해소하였다.  
+     
+     증강 수행 속성|
+     :-------------:|
+     브랜드#품질, 브랜드#디자인, 브랜드#인지도, 브랜드#가격, 제품 전체#다양성, 패키지/구성품#다양성, 패키지/구성품#가격, 패키지/구성품#일반, 패키지/구성품#품질, 본품#인지도, 본품#다양성|  
+     
+     - 역번역  
+       [Pororo](https://github.com/kakaobrain/pororo)  라이브러리를 사용하였다. 역번역을 구현하기위해 번역task를 사용하였으며, 원본 데이터를 영문으로 번역한 후,  
+       다시 한글로 번역하는 과정을 거쳤다.  
+       N개의 데이터를 생성하는데 성공하였다.
+       
+     - 유의어 변환  
+       [Pororo](https://github.com/kakaobrain/pororo) 라이브러리를 사용하였다. 유의어 변환 task를 사용하였으며,   
+       데이터셋 버전에 따라 N개의 데이터 혹은 2N개의 데이터를 생성하는데 성공하였다.
+      
+     - 문장 합치기  
+       같은 속성을 갖는 문장들을 대상으로, ms Excel 필터 기능과 rand 함수를 사용하여 2개의 문장을 합치는 과정을 수행하였다.  
+       원본, 역번역, 유의어 변환 과정을 거친 후 수행하였다.  
+       4N개의 데이터를 생성하는데 성공하였다.
+       
+
+![CNN-Figure-02]( https://user-images.githubusercontent.com/114709607/201504392-a490f5b9-bab2-42c5-99c5-aaca791ed51b.png)  
+
+___
+
+   3. 데이터셋 조합
+   
+ 데이터셋 | 데이터 갯수 | 
+ :-------:|:-----------:|
+ train + dev | 6334|         
+ data + similar | 6735|       
+ data + 108 | 6442 |         
+ data + manual | 6623 |        
+ data + all | 7826|          
+ data + 10_17 | 7175|       
+ data +108_1017_10_24| 7365|       
+ final_data | 9641     |  
+
+ 4. 데이터셋 분석
+
+  ![CNN-Figure-01](https://user-images.githubusercontent.com/114709607/201512983-cbcd6399-d378-4936-a48d-74a5eea11889.png)  
+  
+  - 위의 표는 데이터별 가장 좋은 f1 점수를 나타낸 것이다. 표를 보면 알 수 있듯이 증강된 데이터보다 외부데이터를 추가했을 때 f1 점수가 높고 데이터별로 라벨 수, 데이터 수, component의 수에 따라 영향이 있다는 것을 알 수 있음. 
+
+    - 데이터별로 적합한 라벨이 있다.
+      : data를 보면 학습데이터에서 2개의 레이블이 없음에도 불구하고 23labels보다는 25labels의 f1 점수가 더 좋은 것을 알 수 있다. 반면, data+108+10_17+10_24는 학습데이터에         2개의 레이블을 채웠음에도 불구하고 25labels보다는 23labels이 좀 더 유의미했다.
+
+    - 레이블 간의 불균형을 해소해줘야 한다. 
+      : data보다 data+α로 증강을 하거나 외부데이터를 추가하여 불균형을 해소했을 때 좀 더       유의미한 결과를 얻을 수 있다.
+
+    - component는 여러 개를 뽑아내는 것이 조금 더 좋으나 비슷하다.
+      : data+10_17과 data+108+10_17+10_24를 비교해보면 component가 n개인 data+10_17이 좀 더 좋지만 0.01차라서 component에 따른 영향은 없다고 볼 수 있다. 
+    - 따라서, 레이블 간 불균형이 심할 때는 증강하는 방법보다는 외부데이터를 추가하는 것이 좀 더 효과적이며 외부데이터는 찾고자 하는 데이터의 성질과 비슷하여야 좋은 결 과를       얻을 수 있다는 것을 알 수 있다. 
+
+ 
+ 5. 모델 구축
+   - BaseLine
+     - BaseLine 모델을 기반으로 ELECTRA, BERT, RobertA를 검증하였다.  
+       결과적으로 ELECTRA 모델의 성능이 제일 좋게 나왔으며, 한글 리뷰데이터를 학습시킨,
+       [kykim/electra-kor-base](https://github.com/kiyoungkim1/LMkor)를 사용하였다.
+       ![CNN-Figure-03]( https://user-images.githubusercontent.com/114709607/201506095-9f7056b0-fc6f-4a89-9e2a-f8a2a808a7e2.png)  
+     - 속성범주 탐지와 속성감성 탐지 두개의 모델로 나눠져 있으며, 같은 문장이라면 속성범주가 달라도 속성감성이 같은 점을 이용해,
+     각 모델의 최고값을 찾아 서로 concat 하는 방법을 사용하였다.
+ 
+ 6. 앙상블 기법
+   - 소프트 보팅
+     -  pt값을 이용해 소프트 보팅을 시도하였다. 
+   - 하드보팅
+     - 여러 모델의 결과값을 2개, 3개, 5개, 12개 조합으로 하드보팅을 시도하였다. 주로 3개 조합에서 좋은 결과를 얻었다.  
+
+
+## 결과
+- pre-trained 된 모델일지라도 어떤 데이터로 학습을 했는지에 따라 결과가 다르다는 것을 알 수 있다. 본 경진대회는 리뷰데이터로 속성기반 감성분석을 하는 것이 과제였으므로 다양한 리뷰데이터가 학습된 모델들을 앙상블 함으로써 좋은 결과를 얻을 수 있었다. 또한, 문장 당 개체#속성과 감성을 따로 학습하여 결과를 나타내기에 2개의 모델이 필요하고 앙상블 할 때는 entity_property는 polarity를 고정해놓고 앙상블을 하고 polarity는 entity_property를 정해놓고 앙상블을 하여 마지막에 각각 개별로 앙상블 된 것을 합치면서 성능을 올릴 수 있었다.
+  
+  
+
+## 보완점
+- 데이터 핸들링을 다양하게 했음에도 불구하고 단일 모델에서 61% 이상 오를 수 없었다. 단일 모델의 성능을 끌어올리기 위해 외부데이터 추가 시 모델의 학습에 적합하게 만들어주기 위한 다양한 방법을 모색함과 동시에 앙상블 최적의 조합을 찾기 위해서 앙상블을 하지 않았던 데이터들을 검토해봐야 할 것 같습니다.
+
+## 참조
+- Clark, Kevin, et al. "Electra: Pre-training text encoders as discriminators rather than generators." ICLR 2020.
+https://arxiv.org/abs/2003.10555
