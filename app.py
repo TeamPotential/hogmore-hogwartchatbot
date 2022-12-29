@@ -50,7 +50,7 @@ sp_list
 
 # %%
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+#device = torch.("cuda:0" if torch.cuda.is_available() else "cpu")
 # print(device)
 # 모델이 github에 있을 경우 
 #PATH = './poly_16_pytorch_model_32.bin'
@@ -196,7 +196,7 @@ df = pd.DataFrame(data)
 # %% 피클 불러오기
 with open('static/pickle/cand_embs.pickle', 'rb') as f:
     cand_embs = pickle.load(f)
-cand_embs.to(device)
+#cand_embs.to(device)
 
 # %%
 """
