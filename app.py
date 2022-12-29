@@ -42,7 +42,7 @@ import pickle
 
 app = Flask(__name__)
 
-sp = pd.read_csv('./token_filtering_plus_movie.csv')
+sp = pd.read_csv('token_filtering_plus_movie.csv')
 sp_list = []
 for i in range(len(sp['special token'])):
   sp_list.append(sp['special token'][i])
@@ -52,25 +52,25 @@ sp_list
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # print(device)
+# 모델이 github에 있을 경우 
+#PATH = './poly_16_pytorch_model_32.bin'
 
-PATH = './poly_16_pytorch_model_32.bin'
+#bert_name = 'klue/bert-base'
+#bert_config = BertConfig.from_pretrained(bert_name)
 
-bert_name = 'klue/bert-base'
-bert_config = BertConfig.from_pretrained(bert_name)
+#tokenizer = BertTokenizer.from_pretrained(bert_name)
+#tokenizer.add_tokens(sp_list, special_tokens=True)
 
-tokenizer = BertTokenizer.from_pretrained(bert_name)
-tokenizer.add_tokens(sp_list, special_tokens=True)
+#context_transform = SelectionJoinTransform(tokenizer=tokenizer, max_len=256)
+#response_transform = SelectionSequentialTransform(tokenizer=tokenizer, max_len=128)
 
-context_transform = SelectionJoinTransform(tokenizer=tokenizer, max_len=256)
-response_transform = SelectionSequentialTransform(tokenizer=tokenizer, max_len=128)
+#bert = BertModel.from_pretrained(bert_name, config=bert_config)
 
-bert = BertModel.from_pretrained(bert_name, config=bert_config)
-
-model = PolyEncoder(bert_config, bert=bert, poly_m=16)
-model.resize_token_embeddings(len(tokenizer))
-model.load_state_dict(torch.load(PATH))
-model.to(device)
-model.device
+#model = PolyEncoder(bert_config, bert=bert, poly_m=16)
+#model.resize_token_embeddings(len(tokenizer))
+#model.load_state_dict(torch.load(PATH))
+#model.to(device)
+#model.device
 
 # %%
 def context_input(context):
