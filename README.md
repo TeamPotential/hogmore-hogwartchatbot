@@ -51,6 +51,7 @@ ___
            
 ___
 
+
    3. 데이터셋 조합
    
  데이터셋 | 데이터 갯수 | 
@@ -59,6 +60,8 @@ ___
  오타데이터 + 정제데이터 | 20,878 |       
  수기 + 유의어증강 데이터 | 5,950 |         
  수기 + 유의어증강+세계관 | 6,538 |        
+ 
+ 
  
  4. 데이터셋 분석
   
@@ -131,6 +134,7 @@ Cross-encoder는 유사도 점수를 구할 때 Candidate Embedding을 매번 �
 
 ## 참조
 -Humeau, S., Shuster, K., Lachaux, M. A., & Weston, J. (2019). Poly-encoders: Transformer architectures and pre-training strategies for fast and accurate multi-sentence scoring. arXiv preprint arXiv:1905.01969.
+
 https://doi.org/10.48550/arXiv.1905.01969
 
 https://github.com/chijames/Poly-Encoder
