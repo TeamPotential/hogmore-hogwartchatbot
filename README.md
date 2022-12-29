@@ -40,8 +40,7 @@ ___
  
  2. 데이터 전처리
    - 데이터 생성
-      
-      해리포터 세계관 사전인 포터모어를 기반으로 문답 데이터 생성
+     - 해리포터 세계관 사전인 포터모어를 기반으로 문답 데이터 생성
          
    - 스페셜 토큰 : 454종류
    
@@ -81,19 +80,23 @@ ___
  - GPT2 : ‘skt/kogpt2-base-v2’
  - Poly-Encoder : ‘klue/bert-base’
  
+ 
+  데이터 셋 구조는 다음과 같이 하나의 질문에 하나의 정답과 N개의 오답이 라벨링 되는 형태로 이루어짐.
 ![스크린샷_20221229_112431](https://user-images.githubusercontent.com/113493695/209895780-d7e4ea60-abd7-42b9-931a-77bd09fd582c.png)
 
  
- 데이터 셋 구조는 다음과 같이 하나의 질문에 하나의 정답과 N개의 오답이 라벨링 되는 형태로 이루어짐.
+ 
 ![스크린샷_20221229_112742](https://user-images.githubusercontent.com/113493695/209895818-16cd0ce0-e414-4952-bb3f-442eb9d39185.png)
 
  출력된 yctxt,cand 를 스칼라 값으로 만들어 주기 위한 W 를 곱하여 스코어 계산하여 유사도 점수 뽑아냄.
  cross-entropy는 모델에서 예측한 확률과 정답 확률을 모두 사용해 측정한 값으로, cross-entropy를 최소화하기 위해 negative 방식을 사용.
 
+
  유사도를 사용하는 모델에는 Bi-encoder와 Cross-encoder가 있음.
 ![스크린샷_20221229_113859](https://user-images.githubusercontent.com/113493695/209896367-eb94cd04-f3a5-4cd3-98b2-9e45f4317fe2.png)
 
  Bi-encoder는 Candidate Embedding을 미리 산출해 저장 가능하여서 다시 Embedding을 산출하는 과정이 필요 없어지고 Retrieval system에 적용하여 계산속도가 빨라지는 효과를 얻을 수 있음.
+ 
 ![스크린샷_20221229_113914](https://user-images.githubusercontent.com/113493695/209896555-f267ed31-6fa3-400e-998a-0431beb40e6f.png)
 
 Cross-encoder는 유사도 점수를 구할 때 Candidate Embedding을 매번 다시 산출하여 번거롭지만 보다 연관성 있는 Embedding이 가능하지만 계산 속도가 느려짐.
@@ -106,15 +109,15 @@ Cross-encoder는 유사도 점수를 구할 때 Candidate Embedding을 매번 �
 
 ## 평가지표
 
-Rank-less recommendation metrics : 오답과 함께 우선순위까지 고려하는 지표
+- Rank-less recommendation metrics : 오답과 함께 우선순위까지 고려하는 지표
 
-R@K (Recall at K) : K개를 추천했을 때, 추천 되어야 했을 관련있는 정답과 겹치는 비율을 나타내는 지표
+- R@K (Recall at K) : K개를 추천했을 때, 추천 되어야 했을 관련있는 정답과 겹치는 비율을 나타내는 지표
 
-RR (Reciprocal Rank) : 추천 리스트 중, 사용자가 실제로 선호하는 가장 높은 순위의 역수
+- RR (Reciprocal Rank) : 추천 리스트 중, 사용자가 실제로 선호하는 가장 높은 순위의 역수
 
-MRR (Mean Reciprocal Rank) : 하나의 추천 리스트에서, 각 사용자들이 갖는 reciprocal rank의 평균을 구한 지표
+- MRR (Mean Reciprocal Rank) : 하나의 추천 리스트에서, 각 사용자들이 갖는 reciprocal rank의 평균을 구한 지표
 
-질문 리스트 : 직접 질문 리스트 만들어 모델에 Inference 모델의 성능을 직접 확인
+- 질문 리스트 : 직접 질문 리스트 만들어 모델에 Inference 모델의 성능을 직접 확인
 
 ## 결과
 - Closed Domain Chatbot을 통한 호그와트 세계관을 구현 시도
