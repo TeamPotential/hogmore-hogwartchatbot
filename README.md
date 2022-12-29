@@ -79,6 +79,7 @@ ___
  - Transformer : Model trained from scratch
  - GPT2 : ‘skt/kogpt2-base-v2’
  - Poly-Encoder : ‘klue/bert-base’
+ 
 ![스크린샷_20221229_112431](https://user-images.githubusercontent.com/113493695/209895780-d7e4ea60-abd7-42b9-931a-77bd09fd582c.png)
 
  
