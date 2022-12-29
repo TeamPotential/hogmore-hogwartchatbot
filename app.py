@@ -166,7 +166,7 @@ def score(embs, cand_emb):
 """
 
 # %% 피클생성
-with open('./train_data_source_hogwart_plus_mv_qin_sy_32.pickle', 'rb') as f:
+with open('static/pickle/train_data_source_hogwart_plus_mv_qin_sy_32.pickle', 'rb') as f:
     train = pickle.load(f)
 
 # %%
@@ -194,7 +194,7 @@ df = pd.DataFrame(data)
 
 
 # %% 피클 불러오기
-with open('./cand_embs.pickle', 'rb') as f:
+with open('static/pickle/cand_embs.pickle', 'rb') as f:
     cand_embs = pickle.load(f)
 cand_embs.to(device)
 
