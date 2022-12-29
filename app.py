@@ -12,7 +12,7 @@ import os
 #os.system('!pip install pandas')
 #os.system('!pip install torch')
 #os.system('!pip install -q transformers datasets folium==0.2.1')
-import gdown
+#import gdown
 import os.path   
 import pandas as pd
 import numpy as np
@@ -30,15 +30,15 @@ import json
 #----------------------------------------------------------------------------#
 # bin Download
 #----------------------------------------------------------------------------#
-file = 'poly_16_pytorch_model_48.bin'     # 예제 Textfile
+#file = 'poly_16_pytorch_model_48.bin'     # 예제 Textfile
 
-if os.path.isfile(file):
-    print("Yes. it is a file")
-    pass
-else:
-    url = 'https://drive.google.com/uc?id=1e3eujIm3jjqCLL-nKk8FQmOtK0jARQ_U'
-    output = 'poly_16_pytorch_model_48.bin'
-    gdown.download(url, output, quiet=False)
+#if os.path.isfile(file):
+#    print("Yes. it is a file")
+#    pass
+#else:
+#    url = 'https://drive.google.com/uc?id=1e3eujIm3jjqCLL-nKk8FQmOtK0jARQ_U'
+#    output = 'poly_16_pytorch_model_48.bin'
+#    gdown.download(url, output, quiet=False)
 
 #----------------------------------------------------------------------------#
 # App Config.
