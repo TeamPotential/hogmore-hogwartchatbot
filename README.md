@@ -40,7 +40,8 @@ ___
  
  2. 데이터 전처리
    - 데이터 생성
-     - 해리포터 세계관 사전인 포터모어를 기반으로 문답 데이터 생성
+     
+      해리포터 세계관 사전인 포터모어를 기반으로 문답 데이터 생성
          
    - 스페셜 토큰 : 454종류
    
@@ -134,7 +135,6 @@ Cross-encoder는 유사도 점수를 구할 때 Candidate Embedding을 매번 �
 
 ## 참조
 -Humeau, S., Shuster, K., Lachaux, M. A., & Weston, J. (2019). Poly-encoders: Transformer architectures and pre-training strategies for fast and accurate multi-sentence scoring. arXiv preprint arXiv:1905.01969.
-
 https://doi.org/10.48550/arXiv.1905.01969
 
 https://github.com/chijames/Poly-Encoder
