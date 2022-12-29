@@ -50,7 +50,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
-    return render_template('templates/forms/main.html')
+    return render_template('forms/main.html')
 
 @app.route('/calculate')
 def calculate(num=None):
