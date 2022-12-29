@@ -42,7 +42,7 @@ import pickle
 
 app = Flask(__name__)
 
-sp = pd.read_csv('token_filtering_plus_movie.csv')
+sp = pd.read_csv('./token_filtering_plus_movie.csv')
 sp_list = []
 for i in range(len(sp['special token'])):
   sp_list.append(sp['special token'][i])
