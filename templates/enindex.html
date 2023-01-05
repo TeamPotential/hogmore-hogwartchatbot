@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        draw star by number
+    </title>
+    
+    <style>
+      .balloon {  
+        position:relative; 
+        margin: 50px;
+        width:590px; 
+        height:50px;
+        border-radius: 10px;
+        left: 350px; 
+        top: -180px;
+      }
+      .balloon:after { 
+        position:absolute;
+        top:-10px;
+        left:200px;  
+      }
+      .yangpege {
+        background-image: url('static/img/양피지2.png'); 
+        background-size: cover;
+        height: 500px; 
+        width: 1200px; 
+        position: absolute; 
+        top: 50%; 
+        left: 50%; 
+        margin: -12% 0 0 -600px;
+      }
+      @font-face {
+        font-family: fontest;
+        src: url("static/font/GabiaCheongyeon.ttf");
+      }
+      h2, p{font-family: "fontest";}
+      #bgs {
+          position: fixed; 
+          top: -50%; 
+          left: -50%; 
+          width: 200%; 
+          height: 200%;
+          z-index: -2;
+      }
+      #bgs img {
+          position: absolute; 
+          top: 0; 
+          left: 0; 
+          right: 0; 
+          bottom: 0; 
+          margin: auto; 
+          min-width: 50%;
+          min-height: 50%;
+          z-index: -3;
+      }
+      
+      .log {
+        height: 150px; width: 150px; margin: 5px 0 0 45%;
+      }
+      .jung {
+        position: relative; 
+        margin-left: 13%; 
+        left: 420px; 
+        top: 70px; 
+        height: 100px; 
+        width:400px; 
+        padding-left: 10px;
+      }
+      .sa_p {
+        margin-bottom: -20px; 
+        text-align: right; 
+        font-size: 25px; 
+        margin-top: 20px;
+        height: 40px;
+      }
+      .ma_p {
+        margin-bottom: -20px; font-size: 25px;
+      }
+      .help_img {
+        height: 220px; width: 220px; margin-top: 0%; margin-left: 13%;
+      }
+      .lang_op {
+        position: absolute; right: -10px;
+      }
+      .fdiv {
+        position: relative; left: 200px; top: -100px;  height: 110px; width: 850px;
+        padding-left: 50px;
+      }
+      .fdiv input {
+        height:40px; 
+        font-size: 25px; 
+        background-color: transparent; 
+        border: none; 
+        color: #555; 
+        border-bottom: 3px solid rgb(0, 0, 0); 
+        outline: none; 
+        margin-bottom: 80px;
+        position: relative;
+      }
+      .fdiv button {
+        border:none; 
+        background-color:transparent; 
+        outline: none; box-shadow: none;
+        margin-top: -30px;
+        position: relative;
+        margin-left: -80px;
+      }
+      .fdiv button img {
+        height: 80px;
+        width: 100px;
+      }
+    </style>
+</head>
+<body> 
+  <div>
+    <div id="bgs">
+      <img  src="static/img/호그와트연회장.png">
+    </div>
+
+    <div>    <!-- 오디오는 나중에 다시 시작 -->
+    <audio autoplay loop>
+      <source src="static/audio/hogbgm.mp3" type="audio/mpeg">
+    </audio>
+    </div>
+    <div>
+      <a href="/thort">
+        <img class="log" src="static/img/로고.png">
+      </a>
+    </div>
+
+    <div class='yangpege' >
+      <div>
+        <div class="jung" >
+          <p class="sa_p" style="line-height: 1.5;">
+            <b>
+            user</br>
+            </b>  
+          </p>
+          <p class="sa_p">
+            <b>
+            {% if num == None %}
+            You haven't asked anything yet.
+            {% else %}
+            {{chart}}
+            {% endif %}
+            </b>
+          </p>
+        </div>
+
+        <a href="/enhelps"><img class="help_img" src="static/img/마법모자.png" ></a>
+
+        <div class="balloon">
+          <p class="ma_p" style="line-height: 1.5;">
+            <b>
+            magic hat
+            </b>
+          </p>
+          <p class="ma_p">
+            <b>
+            {% if num == None %}
+            Hello.</br>
+            I am the magic hat in charge of the school magic department.
+            If you need this, please click me.
+            {% else %}
+            {{num}}
+            {% endif %}
+            </b>
+          </p>
+        </div>
+      </div>
+  
+
+      <form method="POST" action="/thort">
+        <div class="fdiv">
+          <select name="fruit" style="position: absolute; right: -258px; top: -534%;">
+            <option value="" selected>language</option>
+            <option value="Korean">Korean</option>
+            <option value="English">English</option>
+          </select>
+          <input type="text" name="num" size="50" placeholder="질문">
+          <button type="submit"><img src='static/img/깃펜1.png'></button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</body>
+</html>

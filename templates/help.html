@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        draw star by number
+    </title>
+    
+    <style>
+      .yangpege {
+        background-image: url('static/img/도움말액자.png'); 
+        background-size: cover;
+        height: 500px; 
+        width: 1200px; 
+        position: absolute; 
+        top: 50%; 
+        left: 50%; 
+        margin: -12% 0 0 -600px;
+      }
+      .yangpege h3{
+        margin-left: 17%; 
+        margin-top: 17%;
+      }
+      .yangpege button{
+        margin-left: 47.5%;
+        margin-top: 5%;
+      }
+      @font-face {
+        font-family: fontest;
+        src: url("static/font/GabiaCheongyeon.ttf");
+      }
+      h3, p{font-family: "fontest";}
+      #bgs {
+          position: fixed; 
+          top: -50%; 
+          left: -50%; 
+          width: 200%; 
+          height: 200%;
+          z-index: -2;
+      }
+      #bgs img {
+          position: absolute; 
+          top: 0; 
+          left: 0; 
+          right: 0; 
+          bottom: 0; 
+          margin: auto; 
+          min-width: 50%;
+          min-height: 50%;
+          z-index: -3;
+      }
+      
+      .log {
+        height: 150px; width: 150px; margin: 5px 0 0 45%;
+      }
+    </style>
+</head>
+<body>
+  <div id="bgs">
+    <img  src="static/img/호그와트연회장.png">
+  </div>
+
+  <div>    <!-- 오디오는 나중에 다시 시작 -->
+  <audio autoplay loop>
+    <source src="static/audio/hogbgm.mp3" type="audio/mpeg">
+  </audio>
+  </div>
+
+  <div>
+    <a href="/calculate">
+      <img class="log" src="static/img/로고.png">
+    </a>
+  </div>
+
+  <div class='yangpege' >
+    <h3>
+      안녕하세요. hogmore 사용설명서 입니다. </br> 
+      상단 중간의 로고를 누르시면 새로고침 및 초기 질문 화면으로 돌아갑니다.</br>
+      원하시는 질문을 입력 후 엔터 또는 깃펜을 눌러주세요</br>
+      오른쪽 상단의 언어 또는 langeuages를 누르면 원하는 언어로 검색을 할 수 있습니다.</br>
+      영어를 누스리고 한글로 검색하시면 번역이 되고 그 후로는 영어로 질문이 가능합니다.</br>
+      Korean을 누르고 영어로 검색하시면 번역이 되서 한글로 질문이 가능합니다.</br>
+      혹시 어떤 질문을 해야 할지 모르시겠다면, 이런 질문은 어떨까요?</br>
+      "호그와트에 가려면 어떻게 가나요?"</br>
+      "디멘터가 나타났어!"</br>
+      다시 질문을 하고 싶으시다면 되돌아가기를 눌러주세요
+    </h3>
+    <form action="/calculate" method="GET">
+        <button type="submit">되돌아가기</button>
+    </form>
+  </div>
+</body>
+</html>
