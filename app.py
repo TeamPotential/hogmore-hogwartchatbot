@@ -1,15 +1,17 @@
-#----------------------------------------------------------------------------#
-# Imports
-#----------------------------------------------------------------------------#
+from flask import Flask, request, jsonify, render_template
 
-from flask import Flask, render_template, request
-# from flask.ext.sqlalchemy import SQLAlchemy
-import logging
-from logging import Formatter, FileHandler
-from forms import *
-import os
-import os.path   
+app = Flask(__name__)
+ 
+ 
+# %%
 import pandas as pd
+sp = pd.read_csv('./token_filtering_plus_movie.csv')
+sp_list = []
+for i in range(len(sp['special token'])):
+  sp_list.append(sp['special token'][i])
+sp_list
+
+# %%
 import numpy as np
 import torch
 import torch.nn as nn
@@ -17,60 +19,28 @@ import torch.nn.functional as F
 from transformers import BertPreTrainedModel, BertConfig, BertModel, BertTokenizer, AutoModel
 from encoder import PolyEncoder
 from transform import SelectionJoinTransform, SelectionSequentialTransform
-import os
-import sys
-import urllib.request
-import json
-import pickle
-
-#----------------------------------------------------------------------------#
-# bin Download
-#----------------------------------------------------------------------------#
-#file = 'poly_16_pytorch_model_48.bin'     # 예제 Textfile
-
-#if os.path.isfile(file):
-#    print("Yes. it is a file")
-#    pass
-#else:
-#    url = 'https://drive.google.com/uc?id=1e3eujIm3jjqCLL-nKk8FQmOtK0jARQ_U'
-#    output = 'poly_16_pytorch_model_48.bin'
-#    gdown.download(url, output, quiet=False)
-
-#----------------------------------------------------------------------------#
-# App Config.
-#----------------------------------------------------------------------------#
-
-app = Flask(__name__)
-
-sp = pd.read_csv('token_filtering_plus_movie.csv')
-sp_list = []
-for i in range(len(sp['special token'])):
-  sp_list.append(sp['special token'][i])
-sp_list
-
-# %%
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # print(device)
-# 모델이 github에 있을 경우 
-#PATH = './poly_16_pytorch_model_32.bin'
 
-#bert_name = 'klue/bert-base'
-#bert_config = BertConfig.from_pretrained(bert_name)
+PATH = './poly_16_pytorch_model_32.bin'
 
-#tokenizer = BertTokenizer.from_pretrained(bert_name)
-#tokenizer.add_tokens(sp_list, special_tokens=True)
+bert_name = 'klue/bert-base'
+bert_config = BertConfig.from_pretrained(bert_name)
 
-#context_transform = SelectionJoinTransform(tokenizer=tokenizer, max_len=256)
-#response_transform = SelectionSequentialTransform(tokenizer=tokenizer, max_len=128)
+tokenizer = BertTokenizer.from_pretrained(bert_name)
+tokenizer.add_tokens(sp_list, special_tokens=True)
 
-#bert = BertModel.from_pretrained(bert_name, config=bert_config)
+context_transform = SelectionJoinTransform(tokenizer=tokenizer, max_len=256)
+response_transform = SelectionSequentialTransform(tokenizer=tokenizer, max_len=128)
 
-#model = PolyEncoder(bert_config, bert=bert, poly_m=16)
-#model.resize_token_embeddings(len(tokenizer))
-#model.load_state_dict(torch.load(PATH))
-#model.to(device)
-#model.device
+bert = BertModel.from_pretrained(bert_name, config=bert_config)
+
+model = PolyEncoder(bert_config, bert=bert, poly_m=16)
+model.resize_token_embeddings(len(tokenizer))
+model.load_state_dict(torch.load(PATH))
+model.to(device)
+model.device
 
 # %%
 def context_input(context):
@@ -166,6 +136,8 @@ def score(embs, cand_emb):
 """
 
 # %% 피클생성
+import pickle
+
 with open('./train_data_source_hogwart_plus_mv_qin_sy_32.pickle', 'rb') as f:
     train = pickle.load(f)
 
@@ -188,12 +160,14 @@ for sample in train:
 
 
 # %% 피클 생성시 주석 제거
+import pandas as pd 
 
 # # %%
 df = pd.DataFrame(data)
 
 
 # %% 피클 불러오기
+import pickle
 with open('./cand_embs.pickle', 'rb') as f:
     cand_embs = pickle.load(f)
 cand_embs.to(device)
@@ -214,6 +188,10 @@ print('안녕하세요. 공감 만땅이~~⭐️ 공감이🍀 입니다.')
 """
 파파고 api 활용해보기
 """
+import os
+import sys
+import urllib.request
+import json
 client_id = "1yruG5odcT_wqDo3WVnZ"
 client_secret = "QjHIsoT4KJ"
 ########
@@ -292,27 +270,22 @@ def entext(best_answer):
     return ko_answer
 ########
 
-#----------------------------------------------------------------------------#
-# Controllers.
-#----------------------------------------------------------------------------#
-
-
 @app.route('/', methods=['GET'])
-def home():
-    return render_template('forms/main.html')
+def main_get():
+    return render_template('main.html')
 
 @app.route("/helps")
 def helps():
-    return render_template('forms/help.html')
+    return render_template('help.html')
 
 @app.route("/enhelps")
 def enhelps():
-    return render_template('forms/enhelps.html')
+    return render_template('enhelp.html')
 
 @app.route("/anitest")
 def anitest(num=None):
     
-    return render_template('forms/ani.html')
+    return render_template('ani.html')
 
 @app.route('/calculate', methods=['POST', 'GET'])
 def calculate(num=None):
@@ -338,32 +311,32 @@ def calculate(num=None):
 
             if '디멘터' in nums:
                 print(1)
-                return render_template('forms/enani.html', num=ko_answer, chart=ko_text)
+                return render_template('enani.html', num=ko_answer, chart=ko_text)
             elif '늑대인간' in nums:
                 print(1.5)
-                return render_template('forms/enani.html', num=ko_answer, chart=ko_text)
+                return render_template('enani.html', num=ko_answer, chart=ko_text)
             elif '보름달' in nums:
                 print(0.5)
-                return render_template('forms/enani.html', num=ko_answer, chart=ko_text)
+                return render_template('enani.html', num=ko_answer, chart=ko_text)
             else:
                 print(2)
-                return render_template('forms/enindex.html', num=ko_answer, chart=ko_text)
+                return render_template('enindex.html', num=ko_answer, chart=ko_text)
         else:
             if '디멘터' in nums:
                 print(1)
-                return render_template('forms/ani.html', num=best_answer, chart=nums)
+                return render_template('ani.html', num=best_answer, chart=nums)
             elif '늑대인간' in nums:
                 print(1.5)
-                return render_template('forms/ani.html', num=best_answer, chart=nums)
+                return render_template('ani.html', num=best_answer, chart=nums)
             elif '보름달' in nums:
                 print(0.5)
-                return render_template('forms/ani.html', num=best_answer, chart=nums)
+                return render_template('ani.html', num=best_answer, chart=nums)
             else:
                 print(2)
-                return render_template('forms/index.html', num=best_answer, chart=nums)
+                return render_template('index.html', num=best_answer, chart=nums)
     if num==None:
         print(0)
-        return render_template('forms/index.html', num=num)
+        return render_template('index.html', num=num)
 
 # # 영어에서 한글로
 @app.route("/thort", methods=['POST', 'GET'])
@@ -391,16 +364,16 @@ def thort(num=None):
 
             if 'dement' in nums:
                 print(1)
-                return render_template('forms/ain.html', num=best_answer, chart=ko_tests)
+                return render_template('ain.html', num=best_answer, chart=ko_tests)
             elif 'werewolf' in nums:
                 print(1.5)
-                return render_template('forms/ani.html', num=best_answer, chart=ko_tests)
+                return render_template('ani.html', num=best_answer, chart=ko_tests)
             elif 'full moon' in nums:
                 print(0.5)
-                return render_template('forms/ani.html', num=best_answer, chart=ko_tests)
+                return render_template('ani.html', num=best_answer, chart=ko_tests)
             else:
                 print(2)
-                return render_template('forms/index.html', num=best_answer, chart=ko_tests)
+                return render_template('index.html', num=best_answer, chart=ko_tests)
         else:
             ko_text = [kotest(nums)]
 
@@ -417,22 +390,22 @@ def thort(num=None):
 
             if 'Dement' in nums:
                 print(1)
-                return render_template('forms/enani.html', num=en_best_answer, chart=nums)
+                return render_template('enani.html', num=en_best_answer, chart=nums)
             elif 'Dementor' in nums:
                 print(1.7)
-                return render_template('forms/enani.html', num=en_best_answer, chart=nums)
+                return render_template('enani.html', num=en_best_answer, chart=nums)
             elif 'werewolf' in nums:
                 print(1.5)
-                return render_template('forms/enani.html', num=en_best_answer, chart=nums)
+                return render_template('enani.html', num=en_best_answer, chart=nums)
             elif 'full moon' in nums:
                 print(0.5)
-                return render_template('forms/enani.html', num=en_best_answer, chart=nums)
+                return render_template('enani.html', num=en_best_answer, chart=nums)
             else:
                 print(2)
-                return render_template('forms/enindex.html', num=en_best_answer, chart=nums)
+                return render_template('enindex.html', num=en_best_answer, chart=nums)
     if num==None:
         print(0)
-        return render_template('forms/enindex.html', num=num)
+        return render_template('enindex.html', num=num)
 
 # https://url.com/coffe
 @app.route('/hog', methods=['POST'])
@@ -473,17 +446,6 @@ def coffe():
     # 답변 발사!
     return jsonify(res)
 
-#----------------------------------------------------------------------------#
-# Launch.
-#----------------------------------------------------------------------------#
-
-# Default port:
+# 메인 함수
 if __name__ == '__main__':
-    app.run()
-
-# Or specify port manually:
-'''
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
-'''
+    app.run(host='0.0.0.0', port=80) 
